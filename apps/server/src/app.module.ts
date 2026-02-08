@@ -3,8 +3,8 @@ import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { join } from "node:path";
-import { ScheduleModule } from "@nestjs/schedule";
 import { ConfigModule } from "@nestjs/config";
+import { AppResolver } from "./app.resolver";
 
 @Module({
   imports: [
@@ -26,7 +26,7 @@ import { ConfigModule } from "@nestjs/config";
       sortSchema: true,
       playground: process.env.NODE_ENV === "development",
     }),
-    ScheduleModule.forRoot(),
   ],
+  providers: [AppResolver],
 })
 export class AppModule {}

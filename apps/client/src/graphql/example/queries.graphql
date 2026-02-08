@@ -1,1 +1,5 @@
 # queries here
+
+query hello {
+  hello
+}
