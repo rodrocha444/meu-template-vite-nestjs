@@ -2,13 +2,15 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { SimpleTimestampLogger } from "./utils/SimpleTimestampLogger";
 
+const isDev = process.env.NODE_ENV !== "production";
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new SimpleTimestampLogger(),
   });
 
   app.enableCors({
-    origin: process.env.CORS_ORIGIN,
+    origin: isDev ? true : process.env.CORS_ORIGIN,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   });
