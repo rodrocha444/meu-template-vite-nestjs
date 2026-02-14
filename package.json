@@ -21,10 +21,12 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@apollo/protobufjs",
       "@nestjs/core",
+      "@parcel/watcher",
       "@swc/core",
       "esbuild",
-      "@parcel/watcher"
+      "unrs-resolver"
     ]
   }
 }
