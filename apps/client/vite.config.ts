@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
     clearScreen: false,
     customLogger: logger,
     server: {
-      allowedHosts: true, // true = permite qualquer host
+      allowedHosts: true,
       host: true,
       proxy: {
         "/api": {
@@ -65,8 +65,17 @@ export default defineConfig(({ mode }) => {
       port: Number(env.PORT) || 4173,
     },
     resolve: {
+      dedupe: ["react", "react-dom"],
+
       alias: {
         "@": path.resolve(__dirname, "./src"),
+
+        // 2. ALIAS DE MONOREPO (A Solução Definitiva)
+        // Isso faz o mesmo que o seu config do Metro: força o uso do React da raiz.
+        // Se o React estiver instalado dentro da pasta do projeto e não na raiz,
+        // mude "../../" para "./"
+        react: path.resolve(__dirname, "../../node_modules/react"),
+        "react-dom": path.resolve(__dirname, "../../node_modules/react-dom"),
       },
     },
   };
